@@ -1,7 +1,7 @@
 Name: Cristea Alexandru - Gabriel @ MISS 1
 Title: PCD - Homework 1
 
-Installation: # virtualenv .- && 
+Installation: # virtualenv . && 
                 pip install -r packs.txt &&
                 source bin/activate
 
