@@ -1,0 +1,70 @@
+Name: Cristea Alexandru - Gabriel @ MISS 1
+Title: PCD - Homework 1
+
+#### Entities ####
+- benchmark_server.py
+Contains classes TestServer, TCPTestServer, UDPTesteServer. The first one is abstract and offers default common implementations for the latter two.
+The server can be TCP or UDP and it can use streaming transmitting or 'stop-and-wait' by waiting for an 'ACK' after each send.
+The UDP server timeouts after a number of seconds to avoid blocking caused by packet loss.
+After each session, the server logs results into a file (PROTOCOL, IP:PORT, CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME)
+
+Running: 
+    python benchmark_server.py --help
+E.g.:
+    python benchmark_server.py --protocol tcp 
+    python benchmark_server.py --protocol udp --stop-and-wait
+
+
+
+- benchmark_client.py
+Contains classes TestClient, TCPTestClient, UDPTestClient. The first one - just like the server - is abstract.
+The client can be TCP or UDP, variable chunk size, stop-and-wait aware and it can send a file binary chunk-by-chunk to a server defined by IP and Port.
+After each run, the client longs results into a file (PROTOCOL, CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME)
+
+Running:
+    python benchmark_client.py --help
+E.g.:
+    python benchmark_client.py --protocol tcp --ip 127.0.0.1 --port 8008 --chunk-size 2048 --file 512MB.zip
+    python benchmark_client.py --protocol udp --ip 127.0.0.1 --port 8008 --chunk-size 2048 --file 512MB.zip --stop-and-wait
+
+
+
+#### Stats ####
+## TCP Server
+IP:PORT,         CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME
+127.0.0.1:48468, 2048,       262144,      262144,       536870912,  0.9422256946563721
+
+## TCP Client
+CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME
+2048,       262144,      262144,       536870912,  0.9323766231536865
+
+
+
+## TCP Server with stop-and-wait
+IP:PORT,         CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME
+127.0.0.1:48476, 2048,       262144,      262144,       536870912,  7.864509582519531
+
+## TCP Client with stop-and-wait
+CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME
+2048,       262144,      262144,       536870912,  7.866036415100098
+
+
+
+## UDP Server
+IP:PORT,         CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME
+127.0.0.1:60334, 2048,       262140,      262144,       536862720,  12.704471111297607
+
+## UDP Client
+CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME
+2048,       262144,      262144,       536870912,  1.373225450515747
+
+
+
+## UDP Server with stop-and-wait
+IP:PORT,         CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME
+127.0.0.1:39313, 2048,       262144,      262144,       536870912,  17.231160163879395
+
+## UDP Client with stop-and-wait
+CHUNK_SIZE, RECV_CHUNKS, TOTAL_CHUNKS, RECV_BYTES, TIME
+2048,       262144,      262144,       536870912,  9.019544839859009
+
