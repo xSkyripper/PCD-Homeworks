@@ -1,6 +1,10 @@
 Name: Cristea Alexandru - Gabriel @ MISS 1
 Title: PCD - Homework 1
 
+Installation: # virtualenv .- && 
+                pip install -r packs.txt &&
+                source bin/activate
+
 #### Entities ####
 - benchmark_server.py
 Contains classes TestServer, TCPTestServer, UDPTesteServer. The first one is abstract and offers default common implementations for the latter two.
